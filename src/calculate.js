@@ -4,6 +4,19 @@
  */
 
 /**
+ * Round a number to a fixed number of decimal places without floating-point issues.
+ * @param {number} num - The number to round
+ * @param {number} decimals - Number of decimal places
+ * @returns {number} The rounded number
+ */
+function roundTo(num, decimals) {
+  if (num === 0) return 0;
+  const factor = Math.pow(10, decimals);
+  // Use toFixed to avoid floating-point representation issues, then parse back
+  return parseFloat(Number(num).toFixed(decimals));
+}
+
+/**
  * Calculate total nutrition for a meal.
  * @param {Object} meal - The meal object with products array
  * @param {Object} meal.products - Array of { product, quantity }
@@ -26,11 +39,11 @@ export async function calculateMealTotals(meal) {
     totals.fat += (product.fat || 0) * qty;
   }
 
-  // Round to avoid floating-point precision issues
+  // Round to 1 decimal place to avoid floating-point precision issues
   return {
-    calories: Math.round(totals.calories * 100) / 100,
-    protein: Math.round(totals.protein * 100) / 100,
-    carbs: Math.round(totals.carbs * 100) / 100,
-    fat: Math.round(totals.fat * 100) / 100,
+    calories: roundTo(totals.calories, 1),
+    protein: roundTo(totals.protein, 1),
+    carbs: roundTo(totals.carbs, 1),
+    fat: roundTo(totals.fat, 1),
   };
 }
