@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { saveProduct, getAllProducts } from "../src/products.js";
+import { saveProduct, getAllProducts, clearProducts } from "../src/products.js";
 
 describe("saveProduct", () => {
   test("should save a product with all nutrition fields", async () => {
@@ -44,6 +44,7 @@ describe("saveProduct", () => {
 
 describe("getAllProducts", () => {
   test("should return all saved products", async () => {
+    clearProducts();
     const product1 = {
       nombre: "Yogur Natural",
       energia_kj: 300,
@@ -79,7 +80,7 @@ describe("getAllProducts", () => {
   });
 
   test("should return empty array when no products saved", async () => {
-    // Assuming fresh state or clearing before test
+    clearProducts();
     const products = await getAllProducts();
 
     assert.equal(products.length, 0);
@@ -87,6 +88,7 @@ describe("getAllProducts", () => {
   });
 
   test("should return products with correct structure", async () => {
+    clearProducts();
     const product = {
       nombre: "Test Product",
       energia_kj: 500,
