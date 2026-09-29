@@ -197,9 +197,13 @@ describe("calculateMealTotals", () => {
 
     const result = await calculateMealTotals(meal);
 
+    // Coffee (qty 2): cal=10, prot=0.6, carbs=0, fat=0
+    // Toast (qty 2): cal=160, prot=6, carbs=30, fat=2
+    // OJ (qty 1): cal=110, prot=2, carbs=26, fat=0
+    // Total: cal=280, prot=8.6, carbs=56, fat=2
     assert.equal(result.calories, 280);
     assert.equal(result.protein, 8.6);
-    assert.equal(result.carbs, 67);
-    assert.equal(result.fat, 3);
+    assert.equal(result.carbs, 56);
+    assert.equal(result.fat, 2);
   });
 });
