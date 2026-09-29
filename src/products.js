@@ -34,3 +34,7 @@ export async function getAllProducts() {
     sal: p.sal,
   }));
 }
+
+export function clearProducts() {
+  products.length = 0;
+}
