@@ -1,9 +1,12 @@
 {
   "name": "nutri-scan-ga8xr",
   "version": "1.0.0",
-  "description": "Free, ad-free nutrition tracker",
+  "description": "Nutrition scan application",
   "type": "module",
   "scripts": {
     "test": "node --test"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
