@@ -26,5 +26,11 @@ export async function calculateMealTotals(meal) {
     totals.fat += (product.fat || 0) * qty;
   }
 
-  return totals;
+  // Round to avoid floating-point precision issues
+  return {
+    calories: Math.round(totals.calories * 100) / 100,
+    protein: Math.round(totals.protein * 100) / 100,
+    carbs: Math.round(totals.carbs * 100) / 100,
+    fat: Math.round(totals.fat * 100) / 100,
+  };
 }
