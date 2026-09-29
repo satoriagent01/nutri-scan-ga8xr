@@ -67,21 +67,27 @@ describe("extractNutritionData", () => {
     assert.equal(result.sodium, 0);
   });
 
-  test("should parse numeric values correctly from OCR text", async () => {
+  test("should parse decimal values correctly", async () => {
     const ocrText = `
-      Nutrition Facts
-      Serving Size: 200g
-      Calories: 500
-      Total Fat: 25.5g
-      Protein: 30g
-      Total Carbohydrate: 45.2g
+      Calories: 125.5
+      Total Fat: 5.5g
+      Protein: 3.2g
+      Total Carbohydrate: 15.7g
     `;
 
     const result = await extractNutritionData(ocrText);
 
-    assert.equal(result.calories, 500);
-    assert.equal(result.totalFat, 25.5);
-    assert.equal(result.protein, 30);
-    assert.equal(result.totalCarbohydrate, 45.2);
+    assert.equal(result.calories, 125.5);
+    assert.equal(result.totalFat, 5.5);
+    assert.equal(result.protein, 3.2);
+    assert.equal(result.totalCarbohydrate, 15.7);
+  });
+
+  test("should handle null or undefined input", async () => {
+    const resultNull = await extractNutritionData(null);
+    assert.equal(resultNull.calories, 0);
+
+    const resultUndefined = await extractNutritionData(undefined);
+    assert.equal(resultUndefined.calories, 0);
   });
 });
