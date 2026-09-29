@@ -1,307 +1,308 @@
 # NutriScan - Especificación del Producto
 
-## 1. Visión General
+## Visión General
+Una aplicación web gratuita y sin publicidad para rastrear la información nutricional de productos alimenticios. Permite tomar fotos de las tablas nutricionales de los productos, extraer los datos mediante OCR con IA, y planificar comidas personalizadas agregando productos con cantidades específicas en gramos.
 
-NutriScan es una aplicación web gratuita y sin publicidad que permite a los usuarios rastrear su ingesta nutricional de forma personalizada. La app utiliza OCR con IA para extraer información de las tablas nutricionales de productos alimenticios a partir de fotos, y luego permite al usuario crear comidas personalizadas sumando productos con cantidades en gramos, calculando automáticamente los totales nutricionales.
+## Ejemplos de las Imágenes Compartidas
 
-## 2. Ejemplos de las imágenes compartidas
+### Imagen 1 - Producto de Chocolate
+- **Producto**: Barrita de chocolate sin gluten (Dr. Schär AG)
+- **Tabla nutricional multilingüe**: Alemán, Francés, Neerlandés, Italiano
+- **Campos extraídos**:
+  - Energie: 2292 kJ / 549 kcal (por 100g), 688 kJ / 165 kcal (por 30g = 1 Melto)
+  - Fett: 33 g (por 100g), 10 g (por 30g)
+  - Kohlenhydrate: 55 g (por 100g), 16 g (por 30g)
+  - Zucker: 45 g (por 100g), 14 g (por 30g)
+  - Ballaststoffe: 2.4 g (por 100g), 0.7 g (por 30g)
+  - Eiweiß: 6.8 g (por 100g), 2.0 g (por 30g)
+  - Salz: 0.18 g (por 100g), 0.05 g (por 30g)
+- **Unidades**: kJ, kcal, g
 
-### Imagen 1 (1.jpg) - Chocolate sin gluten (Dr. Schär AG)
-- **Idioma**: Multilingüe (alemán, francés, neerlandés, italiano, inglés)
-- **Tabla nutricional por 100g y por porción (30g = 1 Melto)**:
-  - Energía: 2292 kJ / 549 kcal (por 100g), 688 kJ / 165 kcal (por 30g)
-  - Grasas (Fett/matières grasses/vetten/grassi): 33g (100g), 10g (30g)
-  - De las cuales saturadas (davon gesättigte Fettsäuren): 13g (100g), 3.9g (30g)
-  - Carbohidratos (Kohlenhydrate/glucides/koolhydraten/carboidrati): 55g (100g), 16g (30g)
-  - De los cuales azúcares (davon Zucker/dont sucres): 45g (100g), 14g (30g)
-  - Fibra (Ballaststoffe/fibres alimentaires/vezels/fibre): 2.4g (100g), 0.7g (30g)
-  - Proteínas (Eiweiß/protéines/eiwitten/proteine): 6.8g (100g), 2.0g (30g)
-  - Sal (Salz/sel/zout/sale): 0.18g (100g), 0.05g (30g)
-- **Ingredientes**: Pâte de noisettes 57%, sucre, huiles végétales (palme, tournesol), noisettes 20%, lactose, lait entier en poudre, lait entier en poudre, arôme naturel de vanille, émulsifiant: lécithine de soja, arôme naturel vanille), gaufrette sans gluten (farine de riz, amidón de maïs, huile de palme, émulsifiant: lécithine de tournesol), poudre à lever: carbonate acide de sodium, carbonate acide d'ammonium), chocolat noir 7.5% (pâte de cacao*, sucre, beurre de cacao*, émulsifiant: lécithine de soja, arôme naturel de vanille).
-- **Alergias**: Contiene nueces (almendras, nueces, pistachos). Sin gluten.
+### Imagen 2 - Jugo de Manzana
+- **Producto**: Versgeperst Appel-Sinaasappel- en Mangosap (1L / 5 porciones de 200ml)
+- **Tabla nutricional en neerlandés**:
+  - energie: 199 kJ / 47 kcal (por 100ml), 399 kJ / 94 kcal (por 200ml)
+  - vetten: 0 g (por 100ml), 0 g (por 200ml)
+  - koolhydraten: 11 g (por 100ml), 22 g (por 200ml)
+  - suikers: 10 g (por 100ml), 20 g (por 200ml)
+  - eiwitten: 0.4 g (por 100ml), 0.8 g (por 200ml)
+  - zout: 0 g (por 100ml), 0 g (por 200ml)
+- **Unidades**: kJ, kcal, g, ml
 
-### Imagen 2 (2.jpg) - Zumo de manzana-naranja-mango
-- **Idioma**: Neerlandés
-- **Tabla nutricional por 100ml y por vaso (200ml)**:
-  - Energía: 199 kJ / 47 kcal (100ml), 399 kJ / 94 kcal (200ml)
-  - Grasas: 0g (ambas columnas)
-  - De las cuales saturadas: 0g (ambas columnas)
-  - Carbohidratos: 11g (100ml), 22g (200ml)
-  - De los cuales azúcares: 10g (100ml), 20g (200ml)
-  - Miel: 0.7g (100ml), 1.4g (200ml)
-  - Proteínas: 0.4g (100ml), 0.8g (200ml)
-  - Sal: 0g (ambas columnas)
-  - Vitamina C: 26% (100ml), 21mg (200ml)
-- **Ingredientes**: 45% manzana, 35% naranja, 20% mango, antioxidante (ascorbina [E300]). Sin azúcares añadidos.
-- **Alergias**: Sin gluten, sin lactosa.
-- **Porciones**: 5 porciones de 200ml por 1L.
-
-### Imagen 3 (3.jpg) - Aceite de oliva en spray
-- **Idioma**: Neerlandés
+### Imagen 3 - Aceite de Oliva en Spray
+- **Producto**: Extra Olijfolie van de Eerste Persing (200ml)
 - **Tabla nutricional por 100ml**:
-  - Energía: 3404 kJ / 828 kcal
-  - Grasas: 92g
-  - De las cuales saturadas: 14g
-  - Carbohidratos: 0g
-  - De los cuales azúcares: 0g
-  - Proteínas: 0g
-  - Sal: 0g
-  - Vitamina E: 150% (8mg)
-- **Ingredientes**: Aceite de oliva extra virgen.
-- **Alergias**: Sin información de alergias.
-- **Referencia diaria**: 8400 kJ / 2000 kcal.
+  - energie: 3404 kJ / 828 kcal
+  - vetten: 92 g
+  - koolhydraten: 0 g
+  - eiwitten: 0 g
+  - zout: 0 g
+- **Unidades**: kJ, kcal, g, ml
 
-## 3. Stack Tecnológico
+## Stack Técnico
 
-- **Frontend (UI)**: `public/` - Aplicación web (HTML/CSS/JS o framework ligero como Vue.js/React).
-- **Backend (Lógica)**: `src/` - Servidor backend (Node.js/Express o similar).
-- **Módulo de OCR con IA**: `src/ocr/` - Módulo que llama a un endpoint OpenAI-compatible configurado por el usuario.
-- **Base de datos**: SQLite o archivo JSON para almacenamiento local (sin backend pesado).
+### Arquitectura
+- **Frontend**: `public/` - Aplicación web (HTML/CSS/JS vanilla o framework ligero)
+- **Backend**: `src/` - API REST para lógica de negocio y almacenamiento
+- **OCR con IA**: Módulo en `src/ocr/` que llama a un endpoint OpenAI-compatible configurado por el usuario
 
-### Estructura del proyecto:
-```
-nutri-scan-ga8xr/
-├── docs/
-│   └── SPEC.md
-├── public/
-│   ├── index.html
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       ├── app.js
-│       ├── ocr.js
-│       ├── products.js
-│       └── meals.js
-├── src/
-│   ├── server.js
-│   ├── ocr/
-│   │   └── ocr.js
-│   ├── models/
-│   │   └── product.js
-│   └── utils/
-│       └── nutrition.js
-└── data/
-    └── products.json
-```
+### Configuración del Usuario
+El usuario configura en la interfaz:
+- URL del endpoint de IA (OpenAI-compatible)
+- API Key
+- Modelo a utilizar
 
-## 4. Módulos de la Lógica
+Las pruebas nunca llaman al endpoint de IA; usan datos simulados.
 
-### 4.1 Módulo OCR (`src/ocr/ocr.js`)
+## Módulos de Lógica
 
-**Función principal**: `extractNutrition(imageBuffer: Buffer, config: { url: string, key: string, model: string }) => Promise<NutritionData[]>`
+### 1. `src/ocr/extractor.js` - Extracción de datos nutricionales
+Funciones:
+- `extractNutritionData(imageBuffer, config)`: Extrae datos nutricionales de una imagen usando OCR con IA.
+  - **Parámetros**: 
+    - `imageBuffer`: Buffer de la imagen (Uint8Array)
+    - `config`: { url: string, key: string, model: string }
+  - **Retorna**: `Promise<NutritionData[]>` - Array de datos nutricionales extraídos
+  - **Ejemplo de salida**:
+    ```javascript
+    [
+      {
+        productName: "Barrita de chocolate sin gluten",
+        servingSize: "100g",
+        energyKj: 2292,
+        energyKcal: 549,
+        fat: 33,
+        saturatedFat: 13,
+        carbs: 55,
+        sugars: 45,
+        fiber: 2.4,
+        protein: 6.8,
+        salt: 0.18
+      }
+    ]
+    ```
 
-- **Parámetros**:
-  - `imageBuffer`: Buffer de la imagen (foto de la etiqueta nutricional).
-  - `config`: Configuración del endpoint OpenAI-compatible:
-    - `url`: URL del endpoint (ej: `https://api.openai.com/v1/chat/completions`).
-    - `key`: Clave API.
-    - `model`: Modelo a usar (ej: `gpt-4-vision-preview`).
-- **Retorna**: `Promise<NutritionData[]>` - Array de objetos con la información nutricional extraída.
-- **Async**: Sí.
-- **Ejemplo de entrada**: Buffer de imagen de la etiqueta del chocolate (Imagen 1).
-- **Ejemplo de salida**:
-  ```json
-  [
+### 2. `src/products/product.js` - Gestión de productos
+Funciones:
+- `saveProduct(product)`: Guarda un producto en el almacenamiento.
+  - **Parámetros**: `product` (Producto)
+  - **Retorna**: `Promise<string>` - ID del producto
+  - **Ejemplo de entrada**:
+    ```javascript
     {
-      "productName": "Barres enrobées de chocolat au lait fourrées à la crème à la noisette sans gluten",
-      "nutritionPer100g": {
-        "energyKj": 2292,
-        "energyKcal": 549,
-        "fat": 33,
-        "saturatedFat": 13,
-        "carbs": 55,
-        "sugars": 45,
-        "fiber": 2.4,
-        "protein": 6.8,
-        "salt": 0.18
-      },
-      "nutritionPerServing": {
-        "servingSize": "30g",
-        "energyKj": 688,
-        "energyKcal": 165,
-        "fat": 10,
-        "saturatedFat": 3.9,
-        "carbs": 16,
-        "sugars": 14,
-        "fiber": 0.7,
-        "protein": 2.0,
-        "salt": 0.05
-      },
-      "ingredients": "pâte de noisettes 57%, sucre, huiles végétales...",
-      "allergens": ["nueces", "gluten"]
+      name: "Barrita de chocolate sin gluten",
+      nutritionPer100g: {
+        energyKj: 2292,
+        energyKcal: 549,
+        fat: 33,
+        saturatedFat: 13,
+        carbs: 55,
+        sugars: 45,
+        fiber: 2.4,
+        protein: 6.8,
+        salt: 0.18
+      }
     }
-  ]
-  ```
+    ```
+- `getProduct(id)`: Obtiene un producto por ID.
+  - **Parámetros**: `id` (string)
+  - **Retorna**: `Promise<Producto | null>`
+- `listProducts()`: Lista todos los productos.
+  - **Retorna**: `Promise<Producto[]>`
 
-### 4.2 Módulo de Productos (`src/models/product.js`)
+### 3. `src/meals/meal.js` - Planificación de comidas
+Funciones:
+- `createMeal(meal)`: Crea una nueva comida.
+  - **Parámetros**: `meal` (Comida)
+  - **Retorna**: `Promise<string>` - ID de la comida
+- `addProductToMeal(mealId, productId, grams)`: Agrega un producto a una comida con cantidad en gramos.
+  - **Parámetros**: 
+    - `mealId` (string)
+    - `productId` (string)
+    - `grams` (number)
+  - **Retorna**: `Promise<void>`
+- `calculateMealTotals(mealId)`: Calcula los totales nutricionales de una comida.
+  - **Parámetros**: `mealId` (string)
+  - **Retorna**: `Promise<NutritionTotals>`
+  - **Ejemplo de salida**:
+    ```javascript
+    {
+      energyKj: 2292,
+      energyKcal: 549,
+      fat: 33,
+      saturatedFat: 13,
+      carbs: 55,
+      sugars: 45,
+      fiber: 2.4,
+      protein: 6.8,
+      salt: 0.18
+    }
+    ```
+- `getMeal(mealId)`: Obtiene una comida con sus productos.
+  - **Parámetros**: `mealId` (string)
+  - **Retorna**: `Promise<Comida>`
 
-**Funciones**:
-- `saveProduct(product: Product) => void`
-  - Guarda un producto en la base de datos (archivo JSON o SQLite).
-  - **Parámetros**: `product` - Objeto producto con todos sus campos.
-  - **Retorna**: `void`.
-  - **Async**: No (sincrono para archivo JSON, async para SQLite).
+### 4. `src/storage/storage.js` - Almacenamiento
+Funciones:
+- `saveProduct(product)`: Guarda un producto.
+- `getProduct(id)`: Obtiene un producto.
+- `listProducts()`: Lista productos.
+- `saveMeal(meal)`: Guarda una comida.
+- `getMeal(id)`: Obtiene una comida.
+- `listMeals()`: Lista comidas.
 
-- `getProduct(id: string) => Product | null`
-  - Obtiene un producto por su ID.
-  - **Parámetros**: `id` - ID del producto.
-  - **Retorna**: `Product` o `null` si no existe.
-  - **Async**: No.
+## Modelo de Datos
 
-- `getAllProducts() => Product[]`
-  - Obtiene todos los productos guardados.
-  - **Retorna**: `Product[]`.
-  - **Async**: No.
-
-- `deleteProduct(id: string) => boolean`
-  - Elimina un producto por su ID.
-  - **Parámetros**: `id` - ID del producto.
-  - **Retorna**: `boolean` - `true` si se eliminó, `false` si no existía.
-  - **Async**: No.
-
-### 4.3 Módulo de Nutrición (`src/utils/nutrition.js`)
-
-**Funciones**:
-
-- `calculateNutritionPerGrams(nutritionPer100g: NutritionValues, grams: number) => NutritionValues`
-  - Calcula la nutrición para una cantidad dada en gramos, basado en los valores por 100g.
-  - **Parámetros**:
-    - `nutritionPer100g`: Objeto con valores nutricionales por 100g.
-    - `grams`: Cantidad en gramos.
-  - **Retorna**: `NutritionValues` - Objeto con los valores nutricionales para esa cantidad.
-  - **Ejemplo**:
-    - Entrada: `{ energyKj: 2292, energyKcal: 549, fat: 33, saturatedFat: 13, carbs: 55, sugars: 45, fiber: 2.4, protein: 6.8, salt: 0.18 }`, `grams: 30`
-    - Salida: `{ energyKj: 687.6, energyKcal: 164.7, fat: 9.9, saturatedFat: 3.9, carbs: 16.5, sugars: 13.5, fiber: 0.72, protein: 2.04, salt: 0.054 }`
-
-- `sumNutrition(nutritionArray: NutritionValues[]) => NutritionValues`
-  - Suma los valores nutricionales de un array de objetos.
-  - **Parámetros**: `nutritionArray` - Array de objetos `NutritionValues`.
-  - **Retorna**: `NutritionValues` - Objeto con la suma total.
-  - **Ejemplo**:
-    - Entrada: `[{ energyKj: 687.6, ... }, { energyKj: 199, ... }]`
-    - Salida: `{ energyKj: 886.6, ... }`
-
-## 5. Modelo de Datos
-
-### Producto (`Product`)
-```json
+### Producto
+```javascript
 {
-  "id": "string (UUID)",
-  "name": "string",
-  "nutritionPer100g": {
-    "energyKj": "number",
-    "energyKcal": "number",
-    "fat": "number",
-    "saturatedFat": "number",
-    "carbs": "number",
-    "sugars": "number",
-    "fiber": "number",
-    "protein": "number",
-    "salt": "number"
-  },
-  "ingredients": "string (opcional)",
-  "allergens": ["string"] (opcional),
-  "createdAt": "string (ISO date)"
+  id: string,
+  name: string,
+  nutritionPer100g: {
+    energyKj: number,
+    energyKcal: number,
+    fat: number,
+    saturatedFat: number,
+    carbs: number,
+    sugars: number,
+    fiber: number,
+    protein: number,
+    salt: number
+  }
 }
 ```
 
-### Comida (`Meal`)
-```json
+### Comida
+```javascript
 {
-  "id": "string (UUID)",
-  "name": "string",
-  "items": [
+  id: string,
+  name: string,
+  products: [
     {
-      "productId": "string",
-      "productName": "string",
-      "grams": "number",
-      "nutrition": "NutritionValues"
+      productId: string,
+      productName: string,
+      grams: number,
+      nutrition: {
+        energyKj: number,
+        energyKcal: number,
+        fat: number,
+        saturatedFat: number,
+        carbs: number,
+        sugars: number,
+        fiber: number,
+        protein: number,
+        salt: number
+      }
     }
   ],
-  "totalNutrition": "NutritionValues",
-  "createdAt": "string (ISO date)"
+  totals: {
+    energyKj: number,
+    energyKcal: number,
+    fat: number,
+    saturatedFat: number,
+    carbs: number,
+    sugars: number,
+    fiber: number,
+    protein: number,
+    salt: number
+  }
 }
 ```
 
-## 6. Interfaz de Usuario
+## Interfaz de Usuario
 
-### Pantalla 1: Escáner de Etiquetas (`/`)
-- **Qué hace el usuario**:
-  1. Sube o toma una foto de la etiqueta nutricional de un producto.
-  2. La app procesa la imagen con OCR y muestra los datos extraídos.
-  3. El usuario puede editar los datos si es necesario.
-  4. Guarda el producto en su biblioteca.
+### Pantalla 1: Escáner de Productos
+- **Acciones del usuario**:
+  1. Tomar foto o subir imagen de una tabla nutricional
+  2. Ver los datos extraídos
+  3. Editar/confirmar los datos
+  4. Guardar el producto
 - **Funciones llamadas**:
-  - `extractNutrition(imageBuffer, config)` del módulo OCR.
-  - `saveProduct(product)` del módulo de Productos.
+  - `extractNutritionData()` del módulo OCR
+  - `saveProduct()` del módulo de productos
 
-### Pantalla 2: Biblioteca de Productos (`/products`)
-- **Qué hace el usuario**:
-  1. Ve la lista de todos los productos guardados.
-  2. Puede buscar productos por nombre.
-  3. Puede eliminar productos.
-  4. Puede ver los detalles de un producto (nutrición por 100g, ingredientes, alérgenos).
+### Pantalla 2: Mis Productos
+- **Acciones del usuario**:
+  1. Ver lista de productos guardados
+  2. Buscar productos
+  3. Ver detalles de un producto
 - **Funciones llamadas**:
-  - `getAllProducts()` del módulo de Productos.
-  - `getProduct(id)` del módulo de Productos.
-  - `deleteProduct(id)` del módulo de Productos.
+  - `listProducts()` del módulo de productos
+  - `getProduct()` del módulo de productos
 
-### Pantalla 3: Planificador de Comidas (`/meals`)
-- **Qué hace el usuario**:
-  1. Crea una nueva comida (le pone un nombre).
-  2. Añade productos de su biblioteca con una cantidad en gramos.
-  3. La app calcula automáticamente la nutrición total de la comida.
-  4. Puede ver el desglose de cada producto y el total.
-  5. Puede guardar la comida.
+### Pantalla 3: Planificador de Comidas
+- **Acciones del usuario**:
+  1. Crear una nueva comida
+  2. Agregar productos a la comida con cantidad en gramos
+  3. Ver totales nutricionales calculados
+  4. Guardar la comida
 - **Funciones llamadas**:
-  - `calculateNutritionPerGrams(nutritionPer100g, grams)` del módulo de Nutrición.
-  - `sumNutrition(nutritionArray)` del módulo de Nutrición.
+  - `createMeal()` del módulo de comidas
+  - `addProductToMeal()` del módulo de comidas
+  - `calculateMealTotals()` del módulo de comidas
+  - `getMeal()` del módulo de comidas
 
-### Pantalla 4: Configuración (`/settings`)
-- **Qué hace el usuario**:
-  1. Configura el endpoint de OCR (URL, clave API, modelo).
-  2. Puede ver la lista de productos guardados y su almacenamiento.
+### Pantalla 4: Mis Comidas
+- **Acciones del usuario**:
+  1. Ver lista de comidas guardadas
+  2. Ver detalles de una comida
+  3. Editar una comida
 - **Funciones llamadas**:
-  - Ninguna función de lógica, solo configuración de la UI.
+  - `listMeals()` del módulo de almacenamiento
+  - `getMeal()` del módulo de comidas
 
-## 7. Criterios de Aceptación
+## Criterios de Aceptación
 
-### AC-1: Extracción de datos nutricionales con OCR
-- **Descripción**: El usuario puede subir una foto de una etiqueta nutricional y la app extrae correctamente los datos nutricionales (energía, grasas, carbohidratos, azúcares, proteínas, sal) por 100g y por porción.
-- **Prueba**: Subir la Imagen 1 (chocolate Dr. Schär) y verificar que se extraen correctamente los valores: energía 2292 kJ / 549 kcal por 100g, grasas 33g, carbohidratos 55g, etc.
+### AC-1: Extracción de datos nutricionales
+- El usuario puede subir una foto de una tabla nutricional
+- El sistema extrae los datos nutricionales (energía, grasas, carbohidratos, azúcares, proteínas, sal)
+- Los datos se muestran al usuario para confirmación/edición
+- El usuario puede guardar el producto con los datos extraídos
 
 ### AC-2: Almacenamiento de productos
-- **Descripción**: Los productos extraídos se guardan en la biblioteca del usuario con todos sus datos (nombre, nutrición por 100g, ingredientes, alérgenos).
-- **Prueba**: Guardar un producto extraído y verificar que aparece en la lista de productos con todos sus campos.
+- Los productos se almacenan con su información nutricional por 100g
+- El usuario puede ver la lista de productos guardados
+- El usuario puede ver los detalles de un producto
 
-### AC-3: Cálculo de nutrición por gramos
-- **Descripción**: Al añadir un producto a una comida con una cantidad en gramos, la app calcula correctamente la nutrición para esa cantidad.
-- **Prueba**: Añadir 30g del chocolate (Imagen 1) y verificar que la nutrición calculada es: energía 687.6 kJ / 164.7 kcal, grasas 9.9g, carbohidratos 16.5g, etc.
+### AC-3: Planificación de comidas
+- El usuario puede crear una nueva comida
+- El usuario puede agregar productos a la comida especificando la cantidad en gramos
+- El sistema calcula automáticamente los totales nutricionales basados en las cantidades
+- El usuario puede ver los totales nutricionales de la comida
 
-### AC-4: Suma de nutrición total de la comida
-- **Descripción**: La app suma correctamente la nutrición de todos los productos añadidos a una comida.
-- **Prueba**: Añadir 30g del chocolate (Imagen 1) y 200ml del zumo (Imagen 2, equivalente a 200g aprox.) y verificar que la suma total es correcta.
+### AC-4: Cálculo de totales nutricionales
+- Los totales se calculan correctamente proporcionalmente a los gramos agregados
+- Se incluyen: energía (kJ y kcal), grasas, grasas saturadas, carbohidratos, azúcares, fibra, proteínas, sal
+- Ejemplo: Si un producto tiene 549 kcal por 100g y el usuario agrega 50g, el total debe ser 274.5 kcal
 
-### AC-5: Interfaz de usuario limpia y funcional
-- **Descripción**: La app tiene una interfaz simple, limpia y fácil de usar, sin publicidad ni enfoque en pérdida de peso o salud cardíaca.
-- **Prueba**: Verificar que la UI no tiene anuncios, no menciona pérdida de peso ni salud cardíaca, y es intuitiva.
+### AC-5: Interfaz de usuario
+- La interfaz es simple y limpia
+- No hay enfoque en pérdida de peso o salud cardíaca
+- Es una herramienta de rastreo nutricional personalizado
+- La aplicación es gratuita y sin publicidad
 
-### AC-6: Configuración del endpoint OCR
-- **Descripción**: El usuario puede configurar el endpoint de OCR (URL, clave API, modelo) en la pantalla de configuración.
-- **Prueba**: Configurar un endpoint OpenAI-compatible y verificar que se usa para extraer datos de las etiquetas.
+### AC-6: Configuración de IA
+- El usuario puede configurar la URL, API Key y modelo del endpoint de IA
+- La configuración se guarda en la interfaz de usuario
+- Las pruebas no llaman al endpoint de IA (usar datos simulados)
 
-### AC-7: Búsqueda de productos
-- **Descripción**: El usuario puede buscar productos en su biblioteca por nombre.
-- **Prueba**: Buscar "chocolate" y verificar que aparece el producto Dr. Schär.
+### AC-7: Soporte multilingüe
+- El OCR puede extraer datos de tablas nutricionales en diferentes idiomas (alemán, neerlandés, italiano, español, etc.)
+- Los campos se normalizan a un formato interno consistente
 
-### AC-8: Eliminación de productos
-- **Descripción**: El usuario puede eliminar productos de su biblioteca.
-- **Prueba**: Eliminar un producto y verificar que ya no aparece en la lista.
+## Notas de Implementación
 
-### AC-9: Visualización de detalles del producto
-- **Descripción**: El usuario puede ver los detalles de un producto (nutrición por 100g, ingredientes, alérgenos).
-- **Prueba**: Abrir los detalles del chocolate y verificar que se muestran todos los campos.
+### OCR con IA
+- El módulo OCR llama a un endpoint OpenAI-compatible
+- El usuario configura la URL, API Key y modelo
+- Para pruebas, se simula la extracción con datos de ejemplo
+- El prompt enviado a la IA debe solicitar la extracción de los campos nutricionales en formato JSON
 
-### AC-10: Gratis y sin publicidad
-- **Descripción**: La app es gratuita y no tiene publicidad.
-- **Prueba**: Verificar que no hay anuncios en ninguna pantalla.
+### Cálculo Nutricional
+- Los totales se calculan proporcionalmente: `(grams / 100) * nutritionPer100g`
+- Se redondea a 1 decimal para valores en gramos
+- Se redondea a entero para energía en kcal
+
+### Almacenamiento
+- Para desarrollo: almacenamiento en memoria o localStorage
+- Para producción: base de datos (SQLite, PostgreSQL, etc.)
