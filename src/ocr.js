@@ -43,14 +43,14 @@ export async function extractNutritionData(ocrText) {
     }
 
     // Total Fat
-    const totalFatMatch = trimmed.match(/total?\s*fat\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
+    const totalFatMatch = trimmed.match(/total\s*fat\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
     if (totalFatMatch) {
       result.totalFat = parseFloat(totalFatMatch[1]);
       continue;
     }
 
     // Saturated Fat
-    const satFatMatch = trimmed.match(/saturated?\s*fat\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
+    const satFatMatch = trimmed.match(/saturated\s*fat\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
     if (satFatMatch) {
       result.saturatedFat = parseFloat(satFatMatch[1]);
       continue;
@@ -78,7 +78,7 @@ export async function extractNutritionData(ocrText) {
     }
 
     // Total Carbohydrate
-    const carbMatch = trimmed.match(/total?\s*carbohydrate\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
+    const carbMatch = trimmed.match(/total\s*carbohydrate\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
     if (carbMatch) {
       result.totalCarbohydrate = parseFloat(carbMatch[1]);
       continue;
@@ -92,7 +92,7 @@ export async function extractNutritionData(ocrText) {
     }
 
     // Total Sugars
-    const sugarsMatch = trimmed.match(/total?\s*sugars?\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
+    const sugarsMatch = trimmed.match(/total\s*sugars\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
     if (sugarsMatch) {
       result.totalSugars = parseFloat(sugarsMatch[1]);
       continue;
@@ -106,9 +106,9 @@ export async function extractNutritionData(ocrText) {
     }
 
     // Vitamin D
-    const vitDMatch = trimmed.match(/vitamin\s*d\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
-    if (vitDMatch) {
-      result.vitaminD = parseFloat(vitDMatch[1]);
+    const vitaminDMatch = trimmed.match(/vitamin\s*d\s*[:\-]?\s*(\d+(?:\.\d+)?)/i);
+    if (vitaminDMatch) {
+      result.vitaminD = parseFloat(vitaminDMatch[1]);
       continue;
     }
 
