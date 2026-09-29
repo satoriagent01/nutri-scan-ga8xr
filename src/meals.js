@@ -17,15 +17,28 @@ export async function createMeal(store, mealData) {
   return { success: true, meal };
 }
 
-export async function addProductToMeal(store, mealId, productId, grams) {
+export async function addProductToMeal(store, mealId, product, quantity = 1) {
   if (!store[mealId]) {
     return { success: false, error: 'Meal not found' };
   }
-  store[mealId].products.push({
-    product: { id: productId },
-    quantity: grams
-  });
-  return { success: true };
+  
+  // Check if product with same id already exists
+  const existingIndex = store[mealId].products.findIndex(
+    item => item.product.id === product.id
+  );
+  
+  if (existingIndex >= 0) {
+    // Update quantity
+    store[mealId].products[existingIndex].quantity += quantity;
+  } else {
+    // Add new product
+    store[mealId].products.push({
+      product: { ...product },
+      quantity: quantity
+    });
+  }
+  
+  return { success: true, meal: store[mealId] };
 }
 
 export function getMeal(store, mealId) {
