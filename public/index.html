@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriScan - Rastreador Nutricional</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🍎 NutriScan</h1>
+    <nav>
+      <button data-screen="scan" class="active">📷 Escanear</button>
+      <button data-screen="products">📦 Productos</button>
+      <button data-screen="meals">🍽️ Comidas</button>
+      <button data-screen="settings">⚙️ Ajustes</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Screen: Scan / Upload -->
+    <section id="screen-scan" class="screen active">
+      <h2>Escanear Etiqueta</h2>
+      <div id="upload-area">
+        <label for="photo-input" class="upload-btn">
+          📸 Tomar / Subir Foto
+        </label>
+        <input type="file" id="photo-input" accept="image/*" capture="environment">
+      </div>
+      <div id="preview-container" class="hidden">
+        <h3>Vista Previa</h3>
+        <img id="preview-image" src="" alt="Vista previa de la etiqueta">
+      </div>
+      <div id="ocr-status" class="hidden">
+        <p>⏳ Procesando imagen con OCR...</p>
+      </div>
+      <div id="ocr-result" class="hidden">
+        <h3>Datos Extraídos</h3>
+        <form id="ocr-form">
+          <label>Nombre del producto:
+            <input type="text" id="product-name" placeholder="Nombre del producto">
+          </label>
+          <label>Energía (kJ) por 100g:
+            <input type="number" id="energy-kj" step="0.1" placeholder="kJ">
+          </label>
+          <label>Energía (kcal) por 100g:
+            <input type="number" id="energy-kcal" step="0.1" placeholder="kcal">
+          </label>
+          <label>Grasa (g) por 100g:
+            <input type="number" id="fat" step="0.1" placeholder="g">
+          </label>
+          <label>Grasa saturada (g) por 100g:
+            <input type="number" id="saturated-fat" step="0.1" placeholder="g">
+          </label>
+          <label>Carbohidratos (g) por 100g:
+            <input type="number" id="carbs" step="0.1" placeholder="g">
+          </label>
+          <label>Azúcares (g) por 100g:
+            <input type="number" id="sugars" step="0.1" placeholder="g">
+          </label>
+          <label>Proteína (g) por 100g:
+            <input type="number" id="protein" step="0.1" placeholder="g">
+          </label>
+          <label>Sal (g) por 100g:
+            <input type="number" id="salt" step="0.1" placeholder="g">
+          </label>
+          <button type="submit" id="save-product-btn">💾 Guardar Producto</button>
+        </form>
+      </div>
+      <div id="scan-message" class="message hidden"></div>
+    </section>
+
+    <!-- Screen: Products List -->
+    <section id="screen-products" class="screen">
+      <h2>Mis Productos</h2>
+      <div id="products-list">
+        <p class="empty-msg">No hay productos guardados aún.</p>
+      </div>
+    </section>
+
+    <!-- Screen: Meals -->
+    <section id="screen-meals" class="screen">
+      <h2>Mis Comidas</h2>
+      <div id="meals-container">
+        <div id="create-meal-form">
+          <input type="text" id="meal-name-input" placeholder="Nombre de la comida">
+          <button id="create-meal-btn">➕ Crear Comida</button>
+        </div>
+        <div id="meals-list"></div>
+      </div>
+    </section>
+
+    <!-- Screen: Settings -->
+    <section id="screen-settings" class="screen">
+      <h2>Ajustes OCR</h2>
+      <form id="settings-form">
+        <label>URL del endpoint OCR:
+          <input type="url" id="settings-ocr-url" placeholder="https://api.example.com/ocr">
+        </label>
+        <label>Clave API:
+          <input type="password" id="settings-api-key" placeholder="Tu clave API">
+        </label>
+        <label>Modelo de IA:
+          <input type="text" id="settings-model" placeholder="gpt-4-vision">
+        </label>
+        <button type="submit">💾 Guardar Ajustes</button>
+      </form>
+      <div id="settings-message" class="message hidden"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
