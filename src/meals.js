@@ -1,55 +1,37 @@
-import { randomUUID } from "node:crypto";
+function generateId() {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return Math.random().toString(36).substr(2, 9);
+}
 
-/**
- * Creates a new meal with a unique ID.
- * @param {Object} meals - The meals store (object keyed by meal ID).
- * @param {Object} mealData - The meal data { name, date }.
- * @returns {Promise<{ success: boolean, meal: { id: string, name: string, date: string, products: Array } }>}
- */
-export async function createMeal(meals, mealData) {
-  const id = randomUUID();
+export async function createMeal(store, mealData) {
+  const id = generateId();
   const meal = {
     id,
     name: mealData.name,
     date: mealData.date,
     products: []
   };
-  meals[id] = meal;
+  store[id] = meal;
   return { success: true, meal };
 }
 
-/**
- * Adds a product to a meal.
- * @param {Object} meals - The meals store (object keyed by meal ID).
- * @param {string} mealId - The ID of the meal.
- * @param {string} productId - The ID of the product.
- * @param {number} grams - The amount in grams.
- * @returns {Promise<{ success: boolean, message?: string }>}
- */
-export async function addProductToMeal(meals, mealId, productId, grams) {
-  const meal = meals[mealId];
-  if (!meal) {
-    return { success: false, message: "Meal not found" };
+export async function addProductToMeal(store, mealId, productId, grams) {
+  if (!store[mealId]) {
+    return { success: false, error: 'Meal not found' };
   }
-  meal.products.push({ productId, grams });
+  store[mealId].products.push({
+    product: { id: productId },
+    quantity: grams
+  });
   return { success: true };
 }
 
-/**
- * Gets all meals.
- * @param {Object} meals - The meals store (object keyed by meal ID).
- * @returns {Promise<Array>}
- */
-export async function getAllMeals(meals) {
-  return Object.values(meals);
+export function getMeal(store, mealId) {
+  return store[mealId] || null;
 }
 
-/**
- * Gets a single meal by ID.
- * @param {Object} meals - The meals store (object keyed by meal ID).
- * @param {string} mealId - The ID of the meal.
- * @returns {Promise<Object|null>}
- */
-export async function getMeal(meals, mealId) {
-  return meals[mealId] || null;
+export function getAllMeals(store) {
+  return Object.values(store);
 }
